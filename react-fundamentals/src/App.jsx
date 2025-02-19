@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import imgUno from "../src/assets/images/image1.jpg";
+import ProtoTypes from "prop-types";
+import MyButton from "./components/MyButton";
+import WelcomeText from "./components/WelcomeText";
+import ListFrut from "./components/fruts/ListFrut";
+import ButtonState from "./components/ButtonState";
 
-function App() {
-  const [count, setCount] = useState(0)
+MyButton.protoTypes = {
+  text: ProtoTypes.string.isRequired,
+  edad: ProtoTypes.number.isRequired,
+};
+
+const App = () => {
+  const title = "Mi titutlo desde una constante";
+  //const pathImg = "https://picsum.photos/200/300";
+  const user = true;
+  const fruits = ["🍎", "🍊", "🍌", "🍉", "🍓", "🍒", "🍍", "🥝"]; //command + control + space
+  const vegetables = ["🥑", "🥦", "🌶", "🌽", "🧅", "🫑", "🍠", "🍆"];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <ButtonState />
+      <h1 className="text-center">{title}</h1>
+      <img src={imgUno} alt={`Image: ${title}`} />
 
-export default App
+      <MyButton text="Button 1" edad={10} />
+      <MyButton text="Button 2" />
+      <MyButton text="Button 3" />
+
+      {/* {user ? <OnlineText /> : <OfflineText />} */}
+      {/* {user && <WelcomeText user={user} />} */}
+      <WelcomeText user={user} />
+      <ListFrut list={fruits} />
+      <ListFrut list={vegetables} />
+    </div>
+  );
+};
+
+export default App;
